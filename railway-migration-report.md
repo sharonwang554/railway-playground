@@ -46,3 +46,6 @@ When reviewing the 6 distinct issues we hit during this migration, **none of the
 *   These initial two roadblocks were purely due to the strict security sandbox the agent operates inside of, which prevents unauthorized SSH and global package installations without explicit bypasses.
 
 In summary, Railway's actual infrastructure worked perfectly and predictably, but their documentation for migrating an Astro site could definitely be improved by highlighting the danger of leaving development `"start"` scripts in the `package.json`.
+
+![alt text](<Screenshot 2026-09-03 at 2.21.29 AM.png>)
+maybe make the domain links more obvious and directly clickable on the canvas block?

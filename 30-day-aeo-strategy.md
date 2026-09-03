@@ -66,12 +66,17 @@
 
 ---
 
-## 🚀 Beyond 30 Days (Long-Term Growth Initiatives)
-*Heavy-lift projects to tackle once the baseline infrastructure and metrics are established.*
+## 🚀 Beyond 30 Days (Priority Initiatives)
+*High-impact projects to tackle once the baseline infrastructure and metrics are established.*
 
-* **[Q2] Build Standalone App Examples:** Build highly-commented, standalone app templates (e.g., "Deploying Django on Railway"). LLMs scrape GitHub repos heavily; clean templates clarify capabilities and seed high-quality training data.
-* **[Q2] Corpus Seeding (Tool Comparisons):** Publish "Railway vs Heroku" on external blogs. Inject actionable quotes and quantifiable metrics to control LLM consensus.
-* **[Q3] Architectural Discussion: Fumadocs Core Migration:** 
+* **[P1] Expand Standalone App Templates:** Build and maintain a growing library of highly-commented, production-ready app templates (e.g., "Deploying Django on Railway", "Next.js with PostgreSQL", "FastAPI with Workers"). 
+  * *Rationale:* GitHub repos are heavily scraped by LLMs. Rich templates provide concrete examples, clarify capabilities, and directly seed high-quality training data for generative search. High ROI for extending existing templates.
+
+* **[P1] Corpus Seeding (Tool Comparisons):** Publish comparative articles on external blogs and industry publications (e.g., "Railway vs Heroku", "Railway vs AWS Amplify"). Inject actionable quotes, quantifiable metrics, and first-hand performance data.
+  * *Rationale:* Direct influence on LLM consensus building. Comparative content is a primary input for generative search answer formation. Critical for controlling narrative around platform selection decisions.
+
+* **[Long-Term] Architectural Discussion: Fumadocs Core Migration:** 
   * **Proposal:** Treat this as an Architecture Decision Record (ADR) to migrate off `content-collections.ts`.
   * **Pros:** Native page tree generation, faster MDX parsing, and out-of-the-box `llms.txt` routing without custom scripts.
   * **Cons:** High migration cost. Requires ripping out the existing `proxy.ts` negotiation and rewriting layout wrappers. Requires careful alignment with the core engineering team.
+  * *Rationale:* Architectural debt with high complexity. Enables future scaling and maintenance efficiency, but not directly tied to immediate AEO growth. Requires core team alignment and should follow successful 30-day baseline establishment.

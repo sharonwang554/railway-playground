@@ -4,7 +4,7 @@
 
 This repository contains a community documentation portal for **[Graft](https://github.com/NanoNets/Graft)** — the open-source context layer for AI coding agents.
 
-The site is built with [Astro Starlight](https://starlight.astro.build/) and structured using the [Diataxis](https://diataxis.fr/) framework, organizing content into Tutorials, How-To Guides, Reference, and Explanation.
+The site is built with [Astro Starlight](https://starlight.astro.build/) and structured using the [Diataxis](https://diataxis.fr/) framework, organizing content into Tutorials, How-To Guides, Reference, and Explanations.
 
 ## 🚀 Quick Start
 
@@ -60,6 +60,4 @@ npm run preview
 
 ## 🌐 Deployment
 
-This site is configured for static deployment on **Vercel** via the `@astrojs/vercel` adapter. 
-
-Any pushes to the `main` branch will automatically build and deploy using the `npm run build` command. The Vercel configuration is defined in `vercel.json` and `astro.config.mjs`.
+This site is deployed on **Railway**. Any pushes to the `main` branch will automatically build and deploy using the `npm run build` command.

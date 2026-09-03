@@ -48,6 +48,21 @@ Railway has a mature AEO foundation:
 * **[Long-Term] Actionable Quotes & Tool Comparisons:** LLMs need definitive consensus markers and evaluation-phase content.
   * *Fix:* Publish comparison articles (e.g., "Railway vs Heroku") and inject hard metrics (*"provisions in 10s"*) and authoritative quotes.
 
+### 📦 Migration & Documentation Scalability
+* **[P1] AI-Assisted Migration with Zero-Touch Documentation:** The Vercel-to-Railway migration (via AI agents fed the docs site) uncovered a single critical documentation gap.
+  * *Finding:* Railway's documentation correctly describes Nixpacks auto-detection of Astro projects and static site serving, but **fails to warn developers about removing Vercel-specific adapters** before deployment. This cost ~2 hours of debugging.
+  * *Root Cause:* The docs lack a "Migration Checklist" section that consolidates platform-specific lock-in artifacts (adapters, analytics, config files) into a single, discoverable location.
+  * *Fix:* Add dedicated migration guides following this structure:
+    - **Pre-flight Checklist:** Framework-specific adapters to remove (e.g., `@astrojs/vercel`, `@vercel/analytics`)
+    - **Dependency Alignment:** Node.js/runtime version requirements per framework version
+    - **Build Configuration:** Critical files to delete or modify (`vercel.json`, `start` scripts)
+    - **Runtime Binding:** Common "Application failed to respond" patterns and solutions
+  * *Deliverables:* 
+    - `/docs/tutorials/migrate-from-vercel.mdx` (step-by-step, Diataxis tutorial)
+    - `/docs/reference/common-migration-errors.mdx` (lookup-oriented, error catalog)
+    - Update frontmatter: `type: "tutorial"`, `topics: ["deployment", "vercel", "migration"]`, `lastUpdated: 2026-09-03`
+  * *Outcome:* Replicable migration patterns reduce AI debugging loops. Future platform migrations (AWS → Railway, Netlify → Railway) will reference the same structure, making documentation self-scaling as the ecosystem grows.
+
 ---
 
 ## 3. Implementation Roadmap

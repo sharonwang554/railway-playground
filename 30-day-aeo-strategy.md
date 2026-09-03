@@ -1,0 +1,67 @@
+# 30-Day AEO & SEO Execution Strategy
+
+**Objective:** Establish Railway as the most cited cloud platform in generative search (ChatGPT, Claude, Perplexity) and dominate traditional SEO via high-leverage engineering and content automation.
+
+**Approach:** High ownership, systems over coordination. We will use AI tooling (Claude Code) to execute bulk infrastructure changes, shifting human bandwidth to high-leverage writing and SoM benchmarking.
+
+---
+
+## 🟢 Week 1: Audit & Submit V1 Infrastructure PRs
+*Focus: Auditing the pipeline and working with core engineering to unblock edge delivery without breaking production.*
+
+* **Day 1-2: Audit & Submit CI Guardrail PRs** 
+  * Submit PR to enforce strict **Zod** schema validation for YAML Frontmatter (requiring topics, descriptions, Diátaxis tags, and **Last Modified Dates**).
+  * Submit PR to add a Markdown link checker to CI.
+* **Day 3-4: Propose Edge/WAF Unblocking Rules**
+  * **Fix WAF:** Cloudflare/WAF currently returns `403` for cloud ASNs (AWS/GCP). Audit WAF logs and propose "Verified Bot" rules or ASN whitelists to the core security team.
+  * **Action:** Stage a PR for a fine-grained `robots.txt` and `agents.md` explicitly routing known LLM crawlers to `.md` endpoints.
+* **Day 5: Stage Deterministic AI Refactoring**
+  * **Semantic HTML:** Stage PR swapping `<div className="docs-content">` for `<article>` in layouts.
+  * **Absolute URLs:** Stage PR converting root-relative links to absolute URLs in `llms-full.txt.ts`.
+  * **Performance:** Draft a script replacing `content-collections.ts` multi-process `git log` with a single-pass implementation.
+
+## 🟡 Week 2: Semantic Signals & Dynamic Tooling
+*Focus: Equipping agents with explicit metadata and direct APIs.*
+
+* **Day 8-10: Automated Metadata Diátaxis**
+  * Add `type: z.enum(['tutorial', 'how-to', 'reference', 'explanation'])` to Zod.
+  * Use AI to infer and tag all 300+ docs. Update `seo.tsx` to inject schema based on tags.
+* **Day 11-12: Expose Meilisearch via Model Context Protocol (MCP)**
+  * **Action:** Expose Meilisearch as a Model Context Protocol (MCP) tool so Claude and local agents can dynamically query the docs index natively via the Railway MCP server, rather than relying on standard HTTP web-scraping.
+* **Day 13-14: Unroll Hidden Instructions & Fix MDX Leaks**
+  * Update `proxy.ts` to "unroll" `<Tabs>` and `<Accordion>` into sequential markdown headings.
+  * Statically resolve components (like `<InstallCommand>`) into code blocks so they don't leak raw JSX into AI context.
+
+## 🟠 Week 3: Content Engineering (ATE & Extraction)
+*Focus: Optimizing text for LLM attention spans and exact-match retrieval.*
+
+* **Day 15-17: Token Efficiency Optimization (ATE) via `tiktoken`**
+  * **Action:** Write a Node.js script using `js-tiktoken` to programmatically calculate `Efficiency = Answer-bearing tokens / Total tokens`.
+  * **Action:** Rewrite the top 20 highest-traffic pages to front-load summaries and CLI commands.
+* **Day 18-19: Expand YAML Frontmatter Blocks**
+  * **Action:** Expand the metadata block at the top of every markdown file. Inject **Last Modified Dates** and detailed topics. This guarantees LLMs recognize the freshness and scope of the document immediately.
+* **Day 20-21: Exact Error Strings & Density**
+  * Inject literal terminal errors into troubleshooting docs to guarantee exact-match RAG retrieval.
+  * Break paragraphs >150 words with semantic H2/H3 headers.
+
+## 🔴 Week 4: Proof of Concept & Measurement
+*Focus: Testing structural splits and establishing baselines.*
+
+* **Day 22-25: Diátaxis Splitting (Proof of Concept)**
+  * Break the monolithic `quick-start.md` into distinct, single-path tutorials (e.g., `tutorial-github.md`). 
+  * Unbury critical commands and verify all inbound links and redirects are updated cleanly.
+* **Day 26-30: Establish Share of Model (SoM) Baselines**
+  * Run 30 fixed category prompts across ChatGPT, Claude, and Perplexity (e.g., *"What is the best way to deploy a Flask app?"*).
+  * Track mention rate, accuracy, and URL citation rate to establish a baseline for your AEO growth.
+
+---
+
+## 🚀 Beyond 30 Days (Long-Term Growth Initiatives)
+*Heavy-lift projects to tackle once the baseline infrastructure and metrics are established.*
+
+* **[Q2] Build Standalone App Examples:** Build highly-commented, standalone app templates (e.g., "Deploying Django on Railway"). LLMs scrape GitHub repos heavily; clean templates clarify capabilities for models.
+* **[Q2] Corpus Seeding (Tool Comparisons):** Publish "Railway vs Heroku" on external blogs. Inject actionable quotes and quantifiable metrics to control LLM consensus.
+* **[Q3] Architectural Discussion: Fumadocs Core Migration:** 
+  * **Proposal:** Treat this as an Architecture Decision Record (ADR) to migrate off `content-collections.ts`.
+  * **Pros:** Native page tree generation, faster MDX parsing, and out-of-the-box `llms.txt` routing without custom scripts.
+  * **Cons:** High migration cost. Requires ripping out the existing `proxy.ts` negotiation and rewriting layout wrappers. Requires careful alignment with the core engineering team.

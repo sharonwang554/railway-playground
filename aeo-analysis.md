@@ -50,7 +50,7 @@ Railway has a mature AEO foundation:
 
 ### 📦 Migration & Documentation Scalability
 * **[P1] AI-Assisted Migration with Zero-Touch Documentation:** The Vercel-to-Railway migration (via AI agents fed the docs site) uncovered a single critical documentation gap.
-  * *Finding:* Railway's documentation correctly describes Nixpacks auto-detection of Astro projects and static site serving, but **fails to warn developers about removing Vercel-specific adapters** before deployment. This cost ~2 hours of debugging.
+  * *Finding:* Railway's documentation correctly describes Nixpacks auto-detection of Astro projects and static site serving, but **fails to warn developers about removing Vercel-specific adapters** before deployment.
   * *Root Cause:* The docs lack a "Migration Checklist" section that consolidates platform-specific lock-in artifacts (adapters, analytics, config files) into a single, discoverable location.
   * *Fix:* Add dedicated migration guides following this structure:
     - **Pre-flight Checklist:** Framework-specific adapters to remove (e.g., `@astrojs/vercel`, `@vercel/analytics`)

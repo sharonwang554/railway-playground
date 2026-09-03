@@ -27,7 +27,7 @@
   * Add `type: z.enum(['tutorial', 'how-to', 'reference', 'explanation'])` to Zod.
   * Use AI to infer and tag all 300+ docs. Update `seo.tsx` to inject schema based on tags.
 * **Day 11-12: Expose Meilisearch via Model Context Protocol (MCP)**
-  * **Action:** Expose Meilisearch as a Model Context Protocol (MCP) tool so Claude and local agents can dynamically query the docs index natively via the Railway MCP server, rather than relying on standard HTTP web-scraping.
+  * **Action:** Expose Meilisearch as a Model Context Protocol (MCP) tool so Claude and local agents can dynamically query the docs index natively via the Railway MCP server, rather than relying on full context dumps.
 * **Day 13-14: Unroll Hidden Instructions & Fix MDX Leaks**
   * Update `proxy.ts` to "unroll" `<Tabs>` and `<Accordion>` into sequential markdown headings.
   * Statically resolve components (like `<InstallCommand>`) into code blocks so they don't leak raw JSX into AI context.
@@ -39,18 +39,28 @@
   * **Action:** Write a Node.js script using `js-tiktoken` to programmatically calculate `Efficiency = Answer-bearing tokens / Total tokens`.
   * **Action:** Rewrite the top 20 highest-traffic pages to front-load summaries and CLI commands.
 * **Day 18-19: Expand YAML Frontmatter Blocks**
-  * **Action:** Expand the metadata block at the top of every markdown file. Inject **Last Modified Dates** and detailed topics. This guarantees LLMs recognize the freshness and scope of the document immediately.
+  * **Action:** Expand the metadata block at the top of every markdown file. Inject **Last Modified Dates** and detailed topics. This guarantees LLMs recognize the freshness and scope of the documentation.
 * **Day 20-21: Exact Error Strings & Density**
   * Inject literal terminal errors into troubleshooting docs to guarantee exact-match RAG retrieval.
   * Break paragraphs >150 words with semantic H2/H3 headers.
 
-## 🔴 Week 4: Proof of Concept & Measurement
-*Focus: Testing structural splits and establishing baselines.*
+## 🔴 Week 4: Documentation Gap Remediation & Proof of Concept
+*Focus: Converting AI migration findings into reusable docs, then testing structural splits.*
 
-* **Day 22-25: Diátaxis Splitting (Proof of Concept)**
+* **Day 22-24: Convert Migration Report into Migration Guides**
+  * **Action:** Extract insights from `railway-migration-report.md` and convert the 6 error categories into a reusable "Migration Runbook."
+  * **Action:** Create two new docs:
+    - `/docs/tutorials/migrate-from-vercel.mdx` — Step-by-step Diataxis tutorial with pre-flight checklists
+    - `/docs/reference/common-migration-errors.mdx` — Lookup-oriented error catalog with solutions
+  * **Content Structure:** Framework-specific adapters → Dependency alignment → Build config → Runtime binding
+  * **Frontmatter:** Tag with `type: "tutorial"`, `topics: ["deployment", "vercel", "migration"]`, `lastUpdated: 2026-09-03`
+  * **Outcome:** Future AI migrations reduce debugging loops. Docs become self-scaling as new platform migration patterns are added.
+
+* **Day 25-27: Diátaxis Splitting (Proof of Concept)**
   * Break the monolithic `quick-start.md` into distinct, single-path tutorials (e.g., `tutorial-github.md`). 
   * Unbury critical commands and verify all inbound links and redirects are updated cleanly.
-* **Day 26-30: Establish Share of Model (SoM) Baselines**
+
+* **Day 28-30: Establish Share of Model (SoM) Baselines**
   * Run 30 fixed category prompts across ChatGPT, Claude, and Perplexity (e.g., *"What is the best way to deploy a Flask app?"*).
   * Track mention rate, accuracy, and URL citation rate to establish a baseline for your AEO growth.
 
@@ -59,7 +69,7 @@
 ## 🚀 Beyond 30 Days (Long-Term Growth Initiatives)
 *Heavy-lift projects to tackle once the baseline infrastructure and metrics are established.*
 
-* **[Q2] Build Standalone App Examples:** Build highly-commented, standalone app templates (e.g., "Deploying Django on Railway"). LLMs scrape GitHub repos heavily; clean templates clarify capabilities for models.
+* **[Q2] Build Standalone App Examples:** Build highly-commented, standalone app templates (e.g., "Deploying Django on Railway"). LLMs scrape GitHub repos heavily; clean templates clarify capabilities and seed high-quality training data.
 * **[Q2] Corpus Seeding (Tool Comparisons):** Publish "Railway vs Heroku" on external blogs. Inject actionable quotes and quantifiable metrics to control LLM consensus.
 * **[Q3] Architectural Discussion: Fumadocs Core Migration:** 
   * **Proposal:** Treat this as an Architecture Decision Record (ADR) to migrate off `content-collections.ts`.

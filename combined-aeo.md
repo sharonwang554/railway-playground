@@ -63,10 +63,7 @@ Railway has a mature AEO foundation:
     - Update frontmatter: `type: "tutorial"`, `topics: ["deployment", "vercel", "migration"]`, `lastUpdated: 2026-09-03`
   * *Outcome:* Replicable migration patterns reduce AI debugging loops. Future platform migrations (AWS → Railway, Netlify → Railway) will reference the same structure, making documentation self-scaling as the ecosystem grows.
 
----
 
-## 3. Implementation Roadmap
-*(See 30-Day Strategy for execution timeline)*
 
 # 30-Day AEO & SEO Execution Strategy
 
